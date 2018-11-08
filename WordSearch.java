@@ -18,6 +18,11 @@ public class WordSearch{
 
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
+      for (int i = 0; i < data.length; i++) {
+        for (int x = 0; x < data[i].length; x++) {
+          data[i][x] = '_';
+        }
+      }
     }
 
     /**Each row is a new line, there is a space between each letter
