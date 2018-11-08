@@ -64,6 +64,9 @@ public class WordSearch{
       if (row > data.length || col > data[row].length) {
         return false;
       }
+      if (word.length() > data[row].length - col) {
+        return false;
+      }
       for (int i = 0; i < word.length(); i++) {
         if (data[row][col + i] != '_') {
           check = false;
