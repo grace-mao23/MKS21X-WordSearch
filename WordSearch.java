@@ -76,7 +76,7 @@ public class WordSearch{
       }
       if (check) {
         for (int x = 0; x < word.length(); x++) {
-          data[row][x + col] = word.charAt(x);
+          data[row][col + x] = word.charAt(x);
         }
       }
       return check;
