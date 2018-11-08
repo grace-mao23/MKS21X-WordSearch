@@ -96,7 +96,26 @@ public class WordSearch{
 
      */
     public boolean addWordVertical(String word,int row, int col){
-      return false;
+      boolean check = true;
+      if (row > data.length || col > data[row].length) {
+        return false;
+      }
+      if (word.length() > data.length - row) {
+        return false;
+      }
+      for (int i = 0; i < word.length(); i++) {
+        if (data[row + i][col] != '_' && data[row + i][col] != word.charAt(i)) {
+          check = false;
+        } else if(data[row + i][col] != word.charAt(i) && data[row + i][col] != '_') {
+          check = false;
+        }
+      }
+      if (check) {
+        for (int x = 0; x < word.length(); x++) {
+          data[row + x][col] = word.charAt(x);
+        }
+      }
+      return check;
     }
 
 }
