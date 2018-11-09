@@ -58,6 +58,20 @@ public class Driver{
     System.out.println(diag.addWordDiagonal("puppies",0,0));
     System.out.println(diag);
 
+    System.out.println();
+
+    System.out.println("Testing addWordDiagonal (should print false)");
+    System.out.println(diag.addWordDiagonal("dog",8,2));
+    System.out.println(diag);
+
+    System.out.println();
+
+    System.out.println("Testing addWordDiagonal with overlaps");
+    System.out.println(diag.addWordDiagonal("esmeh",5,5));
+    System.out.println(diag);
+    System.out.println(diag.addWordDiagonal("nooo",4,4));
+    System.out.println(diag);
+
   }
 
 }
