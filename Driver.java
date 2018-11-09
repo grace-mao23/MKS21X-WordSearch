@@ -72,6 +72,15 @@ public class Driver{
     System.out.println(diag.addWordDiagonal("nooo",4,4));
     System.out.println(diag);
 
+    System.out.println();
+
+    WordSearch yay = new WordSearch(10,10);
+    System.out.println("Testing all three add methods together");
+    yay.addWordDiagonal("pieeee",0,0);
+    yay.addWordVertical("piiiii",0,0);
+    yay.addWordHorizontal("peeeee",0,0);
+    System.out.println(yay);
+
   }
 
 }
