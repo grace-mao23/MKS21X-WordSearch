@@ -51,6 +51,13 @@ public class Driver{
     System.out.println(ary.addWordVertical("nahh", 2,7));
     System.out.println(ary);
 
+    System.out.println();
+
+    WordSearch diag = new WordSearch(10,10);
+    System.out.println("Testing addWordDiagonal (should print true)");
+    System.out.println(diag.addWordDiagonal("puppies",0,0));
+    System.out.println(diag);
+
   }
 
 }
