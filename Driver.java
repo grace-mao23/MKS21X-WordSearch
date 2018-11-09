@@ -13,6 +13,12 @@ public class Driver{
 
     System.out.println();
 
+    System.out.println("Trying to add empty string (should work but not modify the puzzle)");
+    System.out.println(ary.addWordHorizontal("",0,0));
+    System.out.println(ary);
+
+    System.out.println();
+
     System.out.println("Testing addWordHorizontal (should print false)");
     System.out.println(ary.addWordHorizontal("beeeees",2,2));
     System.out.println(ary);
@@ -44,6 +50,7 @@ public class Driver{
     System.out.println(ary);
     System.out.println(ary.addWordVertical("nahh", 2,7));
     System.out.println(ary);
+
   }
 
 }
