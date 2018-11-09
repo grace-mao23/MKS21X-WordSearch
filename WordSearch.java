@@ -119,6 +119,27 @@ public class WordSearch{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordDiagonal(String word,int row, int col){
-      return true;
+      boolean check = true;
+      if (row > data.length || col > data[row].length ||
+          word.length() > data.length - row || word.length() > data[row].length - col) {
+        return false;
+      }
+      int column = 0;
+      for (int i = 0; i < word.length(); i++) {
+        if (data[row + i][col + column] != '_' && data[row + i][col + column] != word.charAt(i)) {
+          check = false;
+        } else if(data[row + i][col + column] != word.charAt(i) && data[row + i][col + column] != '_') {
+          check = false;
+        }
+        column++;
+      }
+      column = 0;
+      if (check) {
+        for (int x = 0; x < word.length(); x++) {
+          data[row + x][col + column] = word.charAt(x);
+          column++;
+        }
+      }
+      return check;
     }
 }
