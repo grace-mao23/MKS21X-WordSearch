@@ -22,6 +22,14 @@ public class WordSearch{
       clear();
     }
 
+    public WordSearch(int rows, int cols, String fileName) {
+
+    }
+
+    public WordSearch(int rows, int cols, String fileName, int randSeed) {
+      
+    }
+
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for (int i = 0; i < data.length; i++) {
