@@ -163,6 +163,7 @@ public class WordSearch{
      if (i < 0 || i > data.length || col < 0 || col > data[row].length) {
        check = false;
      }
+     col += colIncrement;
    }
    return check;
  }
