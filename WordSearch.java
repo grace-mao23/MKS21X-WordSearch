@@ -158,13 +158,29 @@ public class WordSearch{
   */
  public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
    boolean check = true;
+   if (rowIncrement == 0 && colIncrement == 0) {
+     return false;
+   }
    int column = col;
+   int wordI = 0;
    for (int i = row; i < word.length(); i += rowIncrement) {
      if (i < 0 || i > data.length || col < 0 || col > data[row].length) {
        check = false;
+     } else if (data[row][col] != '_' && data[row][col] != word.charAt(wordI)) {
+       check = false;
      }
      col += colIncrement;
+     wordI++;
    }
+   /*
+   col = 0;
+   wordI = 0;
+   if (check) {
+     for (int i = row; i < word.length(); i += rowIncrement) {
+
+     }
+   }
+   */
    return check;
  }
 
