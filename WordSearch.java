@@ -163,14 +163,16 @@ public class WordSearch{
    }
    int column = col;
    int wordI = 0;
-   for (int i = row; i < word.length(); i += rowIncrement) {
-     if (i < 0 || i > data.length || col < 0 || col > data[row].length) {
+   int rowI = row;
+   while (wordI < word.length()) {
+     if (rowI < 0 || rowI >= data.length || column < 0 || column >= data[rowI].length) {
        check = false;
-     } else if (data[row][col] != '_' && data[row][col] != word.charAt(wordI)) {
+     } else if (data[rowI][column] != '_' && data[rowI][column] != word.charAt(wordI)) {
        check = false;
      }
-     col += colIncrement;
+     column += colIncrement;
      wordI++;
+     rowI += rowIncrement;
    }
    /*
    col = 0;
