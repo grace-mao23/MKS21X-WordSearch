@@ -1,5 +1,15 @@
+import java.util.Random;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class WordSearch{
     private char[][]data;
+    private int seed;
+    private Random randgen;
+    private ArrayList<String> wordsToAdd;
+    private ArrayList<String> wordsAdded;
 
     /**Initialize the grid to the size specified
 
