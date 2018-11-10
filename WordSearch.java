@@ -157,7 +157,14 @@ public class WordSearch{
   *        OR there are overlapping letters that do not match
   */
  public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
-   return true;
+   boolean check = true;
+   int column = col;
+   for (int i = row; i < word.length(); i += rowIncrement) {
+     if (i < 0 || i > data.length || col < 0 || col > data[row].length) {
+       check = false;
+     }
+   }
+   return check;
  }
 
  /*[rowIncrement,colIncrement] examples:
