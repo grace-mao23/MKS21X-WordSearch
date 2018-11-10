@@ -174,15 +174,17 @@ public class WordSearch{
      wordI++;
      rowI += rowIncrement;
    }
-   /*
-   col = 0;
+   column = col;
    wordI = 0;
+   rowI = row;
    if (check) {
-     for (int i = row; i < word.length(); i += rowIncrement) {
-
+     while (wordI < word.length()) {
+       data[rowI][column] = word.charAt(wordI);
+       rowI += rowIncrement;
+       column += colIncrement;
+       wordI++;
      }
    }
-   */
    return check;
  }
 
