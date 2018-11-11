@@ -180,37 +180,37 @@ public class WordSearch{
   *        false when: the word doesn't fit, OR  rowchange and colchange are both 0,
   *        OR there are overlapping letters that do not match
   */
- public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
-   boolean check = true;
-   if (rowIncrement == 0 && colIncrement == 0) {
-     return false;
-   }
-   int column = col;
-   int wordI = 0;
-   int rowI = row;
-   while (wordI < word.length()) {
-     if (rowI < 0 || rowI >= data.length || column < 0 || column >= data[rowI].length) {
-       check = false;
-     } else if (data[rowI][column] != '_' && data[rowI][column] != word.charAt(wordI)) {
-       check = false;
-     }
-     column += colIncrement;
-     wordI++;
-     rowI += rowIncrement;
-   }
-   column = col;
-   wordI = 0;
-   rowI = row;
-   if (check) {
-     while (wordI < word.length()) {
-       data[rowI][column] = word.charAt(wordI);
-       rowI += rowIncrement;
-       column += colIncrement;
-       wordI++;
-     }
-   }
-   return check;
- }
+  public boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
+    boolean check = true;
+    if (rowIncrement == 0 && colIncrement == 0) {
+      return false;
+    }
+    int column = col;
+    int wordI = 0;
+    int rowI = row;
+    while (wordI < word.length()) {
+      if (rowI < 0 || rowI >= data.length || column < 0 || column >= data[rowI].length) {
+        check = false;
+      } else if (data[rowI][column] != '_' && data[rowI][column] != word.charAt(wordI)) {
+        check = false;
+      }
+      column += colIncrement;
+      wordI++;
+      rowI += rowIncrement;
+    }
+    column = col;
+    wordI = 0;
+    rowI = row;
+    if (check) {
+      while (wordI < word.length()) {
+        data[rowI][column] = word.charAt(wordI);
+        rowI += rowIncrement;
+        column += colIncrement;
+        wordI++;
+      }
+    }
+    return check;
+  }
 
  /*[rowIncrement,colIncrement] examples:
   *[-1,1] would add up and the right because (row -1 each time, col + 1 each time)
