@@ -27,7 +27,7 @@ public class WordSearch{
     }
 
     public WordSearch(int rows, int cols, String fileName, int randSeed) {
-      
+
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -45,16 +45,22 @@ public class WordSearch{
      */
     public String toString(){
       String result = "";
-      for (int i = 0; i < data.length - 1; i++) {
+      for (int i = 0; i < data.length; i++) {
+        result += "|";
         for (int x = 0; x < data[i].length; x++) {
-          result += data[i][x] + " ";
-          if (x == data[i].length - 1) {
-            result += "\n";
+          result += data[i][x];
+          if (x != data[i].length - 1) {
+            result += " ";
           }
         }
+        result += "|\n";
       }
-      for (int y = 0; y < data[data.length - 1].length; y++) {
-        result += data[data.length - 1][y] + " ";
+      result += "Words: ";
+      for (int y = 0; y < wordsAdded.size(); y++) {
+        result += wordsAdded.get(y);
+        if (y != wordsAdded.size() - 1) {
+          result += ", ";
+        }
       }
       return result;
     }
