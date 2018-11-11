@@ -79,7 +79,7 @@ public class WordSearch{
      * and the board is NOT modified.
 
      */
-    public boolean addWordHorizontal(String word,int row, int col){
+    private boolean addWordHorizontal(String word,int row, int col){
       boolean check = true;
       if (row > data.length || col > data[row].length || word.length() > data[row].length - col) {
         return false;
@@ -112,7 +112,7 @@ public class WordSearch{
      *and the board is NOT modified.
 
      */
-    public boolean addWordVertical(String word,int row, int col){
+    private boolean addWordVertical(String word,int row, int col){
       boolean check = true;
       if (row > data.length || col > data[row].length || word.length() > data.length - row) {
         return false;
@@ -142,7 +142,7 @@ public class WordSearch{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean addWordDiagonal(String word,int row, int col){
+    private boolean addWordDiagonal(String word,int row, int col){
       boolean check = true;
       if (row > data.length || col > data[row].length ||
           word.length() > data.length - row || word.length() > data[row].length - col) {
@@ -180,41 +180,48 @@ public class WordSearch{
     *        false when: the word doesn't fit, OR  rowchange and colchange are both 0,
     *        OR there are overlapping letters that do not match
     */
-  private boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
-    boolean check = true;
-    if (rowIncrement == 0 && colIncrement == 0) {
-      return false;
-    }
-    int column = col;
-    int wordI = 0;
-    int rowI = row;
-    while (wordI < word.length()) {
-      if (rowI < 0 || rowI >= data.length || column < 0 || column >= data[rowI].length) {
-        check = false;
-      } else if (data[rowI][column] != '_' && data[rowI][column] != word.charAt(wordI)) {
-        check = false;
+    private boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
+      boolean check = true;
+      if (rowIncrement == 0 && colIncrement == 0) {
+        return false;
       }
-      column += colIncrement;
-      wordI++;
-      rowI += rowIncrement;
-    }
-    column = col;
-    wordI = 0;
-    rowI = row;
-    if (check) {
+      int column = col;
+      int wordI = 0;
+      int rowI = row;
       while (wordI < word.length()) {
-        data[rowI][column] = word.charAt(wordI);
-        rowI += rowIncrement;
+        if (rowI < 0 || rowI >= data.length || column < 0 || column >= data[rowI].length) {
+          check = false;
+        } else if (data[rowI][column] != '_' && data[rowI][column] != word.charAt(wordI)) {
+          check = false;
+        }
         column += colIncrement;
         wordI++;
+        rowI += rowIncrement;
       }
+      column = col;
+      wordI = 0;
+      rowI = row;
+      if (check) {
+        while (wordI < word.length()) {
+          data[rowI][column] = word.charAt(wordI);
+          rowI += rowIncrement;
+          column += colIncrement;
+          wordI++;
+        }
+        wordsToAdd.remove(word);
+        wordsAdded.add(word);
+      }
+      return check;
     }
-    return check;
-  }
 
- /*[rowIncrement,colIncrement] examples:
+  /*[rowIncrement,colIncrement] examples:
   *[-1,1] would add up and the right because (row -1 each time, col + 1 each time)
   *[ 1,0] would add downwards because (row+1), with no col change
   *[ 0,-1] would add towards the left because (col - 1), with no row change
   */
+
+    private boolean addAllWords() {
+
+    }
+
 }
