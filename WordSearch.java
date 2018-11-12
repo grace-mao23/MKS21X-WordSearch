@@ -31,7 +31,22 @@ public class WordSearch{
       while (in.hasNext()) {
         wordsToAdd.add(in.nextLine().toUpperCase());
       }
-    //  addAllWords();
+      addAllWords();
+    }
+
+    public WordSearch(int rows, int cols, String fileName, int randSeed) throws FileNotFoundException {
+      seed = randSeed;
+      randgen = new Random(seed);
+      data = new char[rows][cols];
+      clear();
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      wordsToAdd = new ArrayList<>();
+      wordsAdded = new ArrayList<>();
+      while (in.hasNext()) {
+        wordsToAdd.add(in.nextLine().toUpperCase());
+      }
+      addAllWords();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -59,15 +74,88 @@ public class WordSearch{
         }
         result += "|\n";
       }
-/*
+
       result += "Words: ";
       for (int y = 0; y < wordsAdded.size(); y++) {
         result += wordsAdded.get(y);
         if (y != wordsAdded.size() - 1) {
           result += ", ";
         }
-      }*/
+      }
       return result;
     }
 
+    /**Attempts to add a given word to the specified position of the WordGrid.
+      *The word is added in the direction rowIncrement,colIncrement
+      *Words must have a corresponding letter to match any letters that it overlaps.
+      *
+      *@param word is any text to be added to the word grid.
+      *@param row is the vertical locaiton of where you want the word to start.
+      *@param col is the horizontal location of where you want the word to start.
+      *@param rowIncrement is -1,0, or 1 and represents the displacement of each letter in the row direction
+      *@param colIncrement is -1,0, or 1 and represents the displacement of each letter in the col direction
+      *@return true when: the word is added successfully.
+      *        false when: the word doesn't fit, OR  rowchange and colchange are both 0,
+      *        OR there are overlapping letters that do not match
+      */
+
+      private boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
+        boolean check = true;
+        if (rowIncrement == 0 && colIncrement == 0) {
+          return false;
+        }
+        int column = col;
+        int wordI = 0;
+        int rowI = row;
+        while (wordI < word.length()) {
+          if (rowI < 0 || rowI >= data.length || column < 0 || column >= data[rowI].length) {
+            check = false;
+          } else if (data[rowI][column] != '_' && data[rowI][column] != word.charAt(wordI)) {
+            check = false;
+          }
+          column += colIncrement;
+          wordI++;
+          rowI += rowIncrement;
+        }
+        column = col;
+        wordI = 0;
+        rowI = row;
+        if (check) {
+          while (wordI < word.length()) {
+            data[rowI][column] = word.charAt(wordI);
+            rowI += rowIncrement;
+            column += colIncrement;
+            wordI++;
+          }
+          wordsToAdd.remove(word);
+          wordsAdded.add(word);
+        }
+        return check;
+      }
+
+      private void addAllWords() {
+        int size = wordsToAdd.size();
+        for (int i = 0; i < size + 100 && wordsToAdd.size() > 0; i++) {
+          String w = "";
+          if (wordsToAdd.size() == 1) {
+            w = wordsToAdd.get(0);
+          } else {
+            w = wordsToAdd.get(Math.abs(randgen.nextInt() % (wordsToAdd.size())));
+          }
+          int rows = 0;
+          int columns = 0;
+          while (rows == 0 && columns == 0) {
+            rows = randgen.nextInt() % 2;
+            columns = randgen.nextInt() % 2;
+          }
+          int row = data.length;
+          int col = 0;
+          if (row > 0) {
+            col = data[0].length;
+          }
+          for (int j = 0; j < 100 && !addWord(w,
+                                                  Math.abs(randgen.nextInt() % (row + 1)),
+                                                  Math.abs(randgen.nextInt() % (col + 1)), rows, columns); j++);
+        }
+      }
 }
