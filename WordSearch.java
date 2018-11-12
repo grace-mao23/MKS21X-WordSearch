@@ -22,12 +22,35 @@ public class WordSearch{
       clear();
     }
 
-    public WordSearch(int rows, int cols, String fileName) {
-
+    public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
+      randgen = new Random();
+      seed = randgen.nextInt();
+      randgen = new Random(seed);
+      data = new char[rows][cols];
+      clear();
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      wordsToAdd = new ArrayList<String>();
+      wordsAdded = new ArrayList<String>();
+      while (in.hasNext()) {
+        wordsToAdd.add(in.nextLine().toUpperCase());
+      }
+      addAllWords();
     }
 
-    public WordSearch(int rows, int cols, String fileName, int randSeed) {
-
+    public WordSearch(int rows, int cols, String fileName, int randSeed) throws FileNotFoundException {
+      seed = randSeed;
+      randgen = new Random(seed);
+      data = new char[rows][cols];
+      clear();
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      wordsToAdd = new ArrayList<String>();
+      wordsAdded = new ArrayList<String>();
+      while (in.hasNext()) {
+        wordsToAdd.add(in.nextLine().toUpperCase());
+      }
+      addAllWords();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -222,7 +245,7 @@ public class WordSearch{
 
     private boolean addAllWords() {
       int size = wordsToAdd.size();
-      while (wordsToAdd.size() > 0) {
+      for (int i = 0; i < size + 100 && wordsToAdd.size() > 0; i++) {
         String w = "";
         if (wordsToAdd.size() == 1) {
           w = wordsToAdd.get(0);
@@ -240,7 +263,9 @@ public class WordSearch{
         if (row > 0) {
           col = data[0].length;
         }
-        for (int i = 0; i < 100 && !addWord())
+        for (int j = 0; j < 100 && !addWord(w,
+                                                Math.abs(randgen.nextInt() % (row + 1)),
+                                                Math.abs(randgen.nextInt() % (col + 1)), rows, columns); j++);
       }
     }
 
