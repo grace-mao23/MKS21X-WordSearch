@@ -1,8 +1,5 @@
-import java.util.Random;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.*; //random, scanner, arraylist
+import java.io.*; //file, filenotfoundexception
 
 public class WordSearch{
     private char[][]data;
@@ -19,6 +16,22 @@ public class WordSearch{
     public WordSearch(int rows,int cols){
       data = new char[rows][cols];
       clear();
+    }
+
+    public WordSearch(int rows, int cols, String fileName) throws FileNotFoundException {
+      randgen = new Random();
+      seed = randgen.nextInt();
+      randgen = new Random(seed);
+      data = new char[rows][cols];
+      clear();
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      wordsToAdd = new ArrayList<>();
+      wordsAdded = new ArrayList<>();
+      while (in.hasNext()) {
+        wordsToAdd.add(in.nextLine().toUpperCase());
+      }
+    //  addAllWords();
     }
 
     /**Set all values in the WordSearch to underscores'_'*/
@@ -46,7 +59,7 @@ public class WordSearch{
         }
         result += "|\n";
       }
-      /*
+/*
       result += "Words: ";
       for (int y = 0; y < wordsAdded.size(); y++) {
         result += wordsAdded.get(y);
