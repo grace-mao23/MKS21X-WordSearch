@@ -30,4 +30,31 @@ public class WordSearch{
       }
     }
 
+    /**Each row is a new line, there is a space between each letter
+     *@return a String with each character separated by spaces, and rows
+     *separated by newlines.
+     */
+    public String toString(){
+      String result = "";
+      for (int i = 0; i < data.length; i++) {
+        result += "|";
+        for (int x = 0; x < data[i].length; x++) {
+          result += data[i][x];
+          if (x != data[i].length - 1) {
+            result += " ";
+          }
+        }
+        result += "|\n";
+      }
+      /*
+      result += "Words: ";
+      for (int y = 0; y < wordsAdded.size(); y++) {
+        result += wordsAdded.get(y);
+        if (y != wordsAdded.size() - 1) {
+          result += ", ";
+        }
+      }*/
+      return result;
+    }
+
 }
