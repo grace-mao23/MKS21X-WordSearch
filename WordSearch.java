@@ -221,7 +221,27 @@ public class WordSearch{
   */
 
     private boolean addAllWords() {
-
+      int size = wordsToAdd.size();
+      while (wordsToAdd.size() > 0) {
+        String w = "";
+        if (wordsToAdd.size() == 1) {
+          w = wordsToAdd.get(0);
+        } else {
+          w = wordsToAdd.get(Math.abs(randgen.nextInt() % (wordsToAdd.size())));
+        }
+        int rows = 0;
+        int columns = 0;
+        while (rows == 0 && columns == 0) {
+          rows = randgen.nextInt() % 2;
+          columns = randgen.nextInt() % 2;
+        }
+        int row = data.length;
+        int col = 0;
+        if (row > 0) {
+          col = data[0].length;
+        }
+        for (int i = 0; i < 100 && !addWord())
+      }
     }
 
 }
