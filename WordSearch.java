@@ -82,6 +82,7 @@ public class WordSearch{
           result += ", ";
         }
       }
+      result += "(seed: " + seed + ")"; 
       return result;
     }
 
