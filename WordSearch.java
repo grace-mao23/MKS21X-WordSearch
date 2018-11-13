@@ -82,7 +82,7 @@ public class WordSearch{
           result += ", ";
         }
       }
-      result += "(seed: " + seed + ")"; 
+      result += "(seed: " + seed + ")";
       return result;
     }
 
@@ -201,6 +201,9 @@ public class WordSearch{
       private boolean addWord(String word,int row, int col, int rowIncrement, int colIncrement){
         boolean check = true;
         if (rowIncrement == 0 && colIncrement == 0) {
+          return false;
+        }
+        if (word.length() == 0) {
           return false;
         }
         int column = col;
