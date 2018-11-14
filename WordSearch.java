@@ -50,7 +50,7 @@ public class WordSearch{
     }
 
     // OFFICIAL CONSTRUCTOR
-    public WordSearch(int rows, int cols, String fileName, int seed, boolean ans) {
+    public WordSearch(int rows, int cols, String fileName, int seed, boolean ans) throws FileNotFoundException {
       seed = seed;
       randgen = new Random(seed);
       data = new char[rows][cols];
@@ -63,12 +63,24 @@ public class WordSearch{
         wordsToAdd.add(in.nextLine().toUpperCase());
       }
       addAllWords();
-      if !(ans) {
+      if (!(ans)) {
         fillRandLetters();
       }
     }
 
-    
+    // Filling in random letters for the puzzle
+    private void fillRandLetters() {
+      int letter = 0;
+      for (int i = 0; i < data.length; i++) {
+        for (int x = 0; x < data[0].length; x++) {
+          if (data[i][x] == '_') {
+            letter = randgen.nextInt() % 26;
+            data[i][x] = (char)('A' + letter);
+          }
+        }
+      }
+    }
+
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for (int i = 0; i < data.length; i++) {
@@ -174,7 +186,7 @@ public class WordSearch{
      *
      *@param word is any text to be added to the word grid.
      *@param row is the vertical locaiton of where you want the word to start.
-     *@param col is the horizontal location of where you want the word to start.
+     *@param col is the horizo      String a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";ntal location of where you want the word to start.
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
