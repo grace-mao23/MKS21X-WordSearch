@@ -261,4 +261,12 @@ public class WordSearch{
                                                   Math.abs(randgen.nextInt() % (col + 1)), rows, columns); j++);
         }
       }
+
+      // MAIN FUNCTION BELOW
+      public static void main(String[] args) {
+        // argument format: rows columns fileName randomSeed answers(key)
+        
+      }
+
+
 }
