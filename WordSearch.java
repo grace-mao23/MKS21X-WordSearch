@@ -74,7 +74,8 @@ public class WordSearch{
       for (int i = 0; i < data.length; i++) {
         for (int x = 0; x < data[0].length; x++) {
           if (data[i][x] == ' ') {
-            letter = randgen.nextInt() % 26;
+            letter = Math.abs(randgen.nextInt() % 26);
+            System.out.println(letter);
             data[i][x] = (char)('A' + letter);
           }
         }
