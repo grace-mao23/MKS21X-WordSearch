@@ -265,7 +265,16 @@ public class WordSearch{
       // MAIN FUNCTION BELOW
       public static void main(String[] args) {
         // argument format: rows columns fileName randomSeed answers(key)
-        
+        try {
+          if (args.length >= 3) {
+            int rows = Integer.parseInt(args[0]);
+            int cols = Integer.parseInt(args[1]);
+            WordSearch w = new WordSearch(rows,cols,args[2]);
+          }
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
+        }
+
       }
 
 
