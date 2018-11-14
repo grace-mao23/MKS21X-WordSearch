@@ -235,6 +235,7 @@ public class WordSearch{
         return check;
       }
 
+      // absent day we discussed, got help from Jenny Huang, code very similar, apologies :(
       private void addAllWords() {
         int size = wordsToAdd.size();
         for (int i = 0; i < size + 100 && wordsToAdd.size() > 0; i++) {
