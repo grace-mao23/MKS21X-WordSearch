@@ -49,6 +49,26 @@ public class WordSearch{
       addAllWords();
     }
 
+    // OFFICIAL CONSTRUCTOR
+    public WordSearch(int rows, int cols, String fileName, int seed, boolean ans) {
+      seed = seed;
+      randgen = new Random(seed);
+      data = new char[rows][cols];
+      clear();
+      File f = new File(fileName);
+      Scanner in = new Scanner(f);
+      wordsToAdd = new ArrayList<>();
+      wordsAdded = new ArrayList<>();
+      while (in.hasNext()) {
+        wordsToAdd.add(in.nextLine().toUpperCase());
+      }
+      addAllWords();
+      if !(ans) {
+        fillRandLetters();
+      }
+    }
+
+    
     /**Set all values in the WordSearch to underscores'_'*/
     private void clear(){
       for (int i = 0; i < data.length; i++) {
