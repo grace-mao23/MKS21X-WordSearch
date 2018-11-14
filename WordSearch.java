@@ -74,7 +74,6 @@ public class WordSearch{
         }
         result += "|\n";
       }
-
       result += "Words: ";
       for (int y = 0; y < wordsAdded.size(); y++) {
         result += wordsAdded.get(y);
@@ -82,7 +81,7 @@ public class WordSearch{
           result += ", ";
         }
       }
-      result += "(seed: " + seed + ")";
+      result += " (seed: " + seed + ")";
       return result;
     }
 
@@ -266,10 +265,17 @@ public class WordSearch{
       public static void main(String[] args) {
         // argument format: rows columns fileName randomSeed answers(key)
         try {
-          if (args.length >= 3) {
+          if (args.length == 3) {
             int rows = Integer.parseInt(args[0]);
             int cols = Integer.parseInt(args[1]);
             WordSearch w = new WordSearch(rows,cols,args[2]);
+            System.out.println(w);
+          } else if (args.length == 4) {
+            int rows = Integer.parseInt(args[0]);
+            int cols = Integer.parseInt(args[1]);
+            int seed = Integer.parseInt(args[3]);
+            WordSearch w = new WordSearch(rows,cols,args[2],seed);
+            System.out.println(w);
           }
         } catch (FileNotFoundException e) {
           e.printStackTrace();
