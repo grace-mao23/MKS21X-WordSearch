@@ -157,7 +157,18 @@ public class WordSearch{
       Random s = new Random();
       int seed = s.nextInt();
       boolean answer = false;
-      WordSearch w = new WordSearch(10,10,"blehh.txt",1,false);
+      // four given
+      if (args.length == 4) {
+        seed = Integer.parseInt(args[3]);
+      }
+      // key specified
+      if (args.length == 5 && args[4].equals("key")) {
+        seed = Integer.parseInt(args[3]);
+        answer = true;
+      }
+      WordSearch result = new WordSearch(rows, cols, fileN, seed, answer);
+      System.out.println(result);
+//      WordSearch w = new WordSearch(10,10,"blehh.txt",1,false);
     } catch (FileNotFoundException e) {
       System.out.println("Please enter three arguments at least. First enter the" +
                           "number of rows, then the number of columns, then an existing file" +
