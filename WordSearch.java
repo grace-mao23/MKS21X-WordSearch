@@ -115,6 +115,7 @@ public class WordSearch{
   }
 
   private void addAllWords() {
+    // absent day taught, got help from Jenny Huang, code very similar apologies :(
     int size = wordsToAdd.size();
     for (int i = 0; i < size + 100 && wordsToAdd.size() > 0; i++) {
       String w = "";
