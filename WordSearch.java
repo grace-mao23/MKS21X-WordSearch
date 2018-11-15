@@ -139,4 +139,37 @@ public class WordSearch{
                                             Math.abs(randgen.nextInt() % (col + 1)), rows, columns); j++);
     }
   }
+
+  // MAIN FUNCTION BELOW
+  public static void main(String[] args) {
+    // argument format: rows columns fileName randomSeed answers(key)
+    try {
+      if (args.length < 3) {
+        System.out.println("Please enter three arguments at least. First enter the" +
+                            "number of rows, then the number of columns, then an existing file" +
+                            "to make your puzzle. You can also enter a seed to view a specific puzzle" +
+                            "and the word key to show an answer key. An example would be:" +
+                            "java WordSearch 10 10 words.txt 128 key");
+      }
+      int rows = Integer.parseInt(args[0]);
+      int cols = Integer.parseInt(args[1]);
+      String fileN = args[2];
+      Random s = new Random();
+      int seed = s.nextInt();
+      boolean answer = false;
+      WordSearch w = new WordSearch(10,10,"blehh.txt",1,false);
+    } catch (FileNotFoundException e) {
+      System.out.println("Please enter three arguments at least. First enter the" +
+                          "number of rows, then the number of columns, then an existing file" +
+                          "to make your puzzle. You can also enter a seed to view a specific puzzle" +
+                          "and the word key to show an answer key. An example would be:" +
+                          "java WordSearch 10 10 words.txt 128 key");
+    } catch (NumberFormatException f) {
+      System.out.println("Please enter three arguments at least. First enter the" +
+                          "number of rows, then the number of columns, then an existing file" +
+                          "to make your puzzle. You can also enter a seed to view a specific puzzle" +
+                          "and the word key to show an answer key. An example would be:" +
+                          "java WordSearch 10 10 words.txt 128 key");
+    }
+  }
 }
