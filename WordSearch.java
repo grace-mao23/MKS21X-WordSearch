@@ -150,6 +150,12 @@ public class WordSearch{
                             "to make your puzzle. You can also enter a seed to view a specific puzzle" +
                             "and the word key to show an answer key. An example would be:" +
                             "java WordSearch 10 10 words.txt 128 key");
+      } else if (args.length >= 4 && (Integer.parseInt(args[3]) > 10000)|| Integer.parseInt(args[3]) < 0) {
+        System.out.println("Please enter three arguments at least. First enter the" +
+                            "number of rows, then the number of columns, then an existing file" +
+                            "to make your puzzle. You can also enter a seed to view a specific puzzle" +
+                            "and the word key to show an answer key. An example would be:" +
+                            " java WordSearch 10 10 words.txt 128 key");
       } else {
         int rows = Integer.parseInt(args[0]);
         int cols = Integer.parseInt(args[1]);
