@@ -184,7 +184,7 @@ public class WordSearch{
                           "to make your puzzle. You can also enter a seed to view a specific puzzle" +
                           "and the word key to show an answer key. An example would be:" +
                           "java WordSearch 10 10 words.txt 128 key");
-    } catch (NumberFormatException f) {
+    } catch (IllegalArgumentException f) {
       System.out.println("Please enter three arguments at least. First enter the" +
                           "number of rows, then the number of columns, then an existing file" +
                           "to make your puzzle. You can also enter a seed to view a specific puzzle" +
