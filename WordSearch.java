@@ -146,10 +146,16 @@ public class WordSearch{
     // argument format: rows columns fileName randomSeed answers(key)
     try {
       if (args.length < 3) {
-        System.out.println("Please enter three arguments at least. First enter the" +
-                            "number of rows, then the number of columns, then an existing file" +
-                            "to make your puzzle. You can also enter a seed to view a specific puzzle" +
-                            "and the word key to show an answer key. An example would be:" +
+        System.out.println("Please enter three arguments at least. First enter the " +
+                            "number of rows, then the number of columns, then an existing file " +
+                            "to make your puzzle. You can also enter a seed to view a specific puzzle " +
+                            "and the word key to show an answer key. An example would be: " +
+                            "java WordSearch 10 10 words.txt 128 key");
+      } else if (Integer.parseInt(args[0]) <= 0 || Integer.parseInt(args[1]) <= 0) {
+        System.out.println("Please enter three arguments at least. First enter the " +
+                            "number of rows, then the number of columns, then an existing file " +
+                            "to make your puzzle. You can also enter a seed to view a specific puzzle " +
+                            "and the word key to show an answer key. An example would be: " +
                             "java WordSearch 10 10 words.txt 128 key");
       } else {
         int rows = Integer.parseInt(args[0]);
@@ -158,14 +164,16 @@ public class WordSearch{
         Random s = new Random();
         int seed = Math.abs(s.nextInt() % 10000);
         boolean answer = false;
+        boolean goodSeed = true;
         // four given
         if (args.length >= 4) {
           if ((Integer.parseInt(args[3]) > 10000)|| Integer.parseInt(args[3]) < 0) {
-            System.out.println("Please enter three arguments at least. First enter the" +
-                                "number of rows, then the number of columns, then an existing file" +
-                                "to make your puzzle. You can also enter a seed to view a specific puzzle" +
-                                "and the word key to show an answer key. An example would be:" +
+            System.out.println("Please enter three arguments at least. First enter the " +
+                                "number of rows, then the number of columns, then an existing file " +
+                                "to make your puzzle. You can also enter a seed to view a specific puzzle " +
+                                "and the word key to show an answer key. An example would be: " +
                                 " java WordSearch 10 10 words.txt 128 key");
+            goodSeed = false;
           } else {
             seed = Integer.parseInt(args[3]);
           }
@@ -174,21 +182,23 @@ public class WordSearch{
         if (args.length == 5 && args[4].equals("key")) {
           answer = true;
         }
-        WordSearch result = new WordSearch(rows, cols, fileN, seed, answer);
-        System.out.println(result);
+        if (goodSeed) {
+          WordSearch result = new WordSearch(rows, cols, fileN, seed, answer);
+          System.out.println(result);
+        }
       }
 //      WordSearch w = new WordSearch(10,10,"blehh.txt",1,false);
     } catch (FileNotFoundException e) {
-      System.out.println("Please enter three arguments at least. First enter the" +
-                          "number of rows, then the number of columns, then an existing file" +
-                          "to make your puzzle. You can also enter a seed to view a specific puzzle" +
-                          "and the word key to show an answer key. An example would be:" +
+      System.out.println("Please enter three arguments at least. First enter the " +
+                          "number of rows, then the number of columns, then an existing file " +
+                          "to make your puzzle. You can also enter a seed to view a specific puzzle " +
+                          "and the word key to show an answer key. An example would be: " +
                           "java WordSearch 10 10 words.txt 128 key");
     } catch (IllegalArgumentException f) {
-      System.out.println("Please enter three arguments at least. First enter the" +
-                          "number of rows, then the number of columns, then an existing file" +
-                          "to make your puzzle. You can also enter a seed to view a specific puzzle" +
-                          "and the word key to show an answer key. An example would be:" +
+      System.out.println("Please enter three arguments at least. First enter the " +
+                          "number of rows, then the number of columns, then an existing file " +
+                          "to make your puzzle. You can also enter a seed to view a specific puzzle " +
+                          "and the word key to show an answer key. An example would be: " +
                           "java WordSearch 10 10 words.txt 128 key");
     }
   }
